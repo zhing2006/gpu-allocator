@@ -167,7 +167,7 @@ pub mod visualizer;
 #[cfg(feature = "vulkan")]
 pub mod vulkan;
 
-#[cfg(all(windows, feature = "d3d12"))]
+#[cfg(feature = "d3d12")]
 pub mod d3d12;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]

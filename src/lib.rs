@@ -237,6 +237,8 @@ pub enum MemoryLocation {
     CpuToGpu,
     /// Memory useful for CPU readback of data
     GpuToCpu,
+    /// Memory useful for GPU but lazily allocated
+    GpuLazy,
 }
 
 #[derive(Copy, Clone, Debug)]

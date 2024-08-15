@@ -793,6 +793,7 @@ impl Allocator {
 
         let mem_loc_preferred_bits = match desc.location {
             MemoryLocation::GpuOnly => vk::MemoryPropertyFlags::DEVICE_LOCAL,
+            MemoryLocation::GpuLazy => vk::MemoryPropertyFlags::DEVICE_LOCAL | vk::MemoryPropertyFlags::LAZILY_ALLOCATED,
             MemoryLocation::CpuToGpu => {
                 vk::MemoryPropertyFlags::HOST_VISIBLE
                     | vk::MemoryPropertyFlags::HOST_COHERENT
@@ -811,6 +812,7 @@ impl Allocator {
         if memory_type_index_opt.is_none() {
             let mem_loc_required_bits = match desc.location {
                 MemoryLocation::GpuOnly => vk::MemoryPropertyFlags::DEVICE_LOCAL,
+                MemoryLocation::GpuLazy => vk::MemoryPropertyFlags::DEVICE_LOCAL | vk::MemoryPropertyFlags::LAZILY_ALLOCATED,
                 MemoryLocation::CpuToGpu | MemoryLocation::GpuToCpu => {
                     vk::MemoryPropertyFlags::HOST_VISIBLE | vk::MemoryPropertyFlags::HOST_COHERENT
                 }
